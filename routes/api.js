@@ -18,16 +18,12 @@ router.get("/api/workouts", (req,res) => {
     })
 })
 
-
-
-
 //Add new exercise to workout plan
 router.put("/api/workouts/:id", (req,res) => {
     Workout.findByIdAndUpdate(req.params.id, 
         {
             $push: {"exercises": req.body}
-        }
-        
+        }        
     )
     .then(dbWorkout => {
         res.json(dbWorkout);
@@ -36,10 +32,6 @@ router.put("/api/workouts/:id", (req,res) => {
         res.status(400).jason(err);
     })
 })
-
-
-
-
 
 //get data from last 7 days
 router.get("/api/workouts/range", (req,res) => {
@@ -64,12 +56,9 @@ router.get("/api/workouts/range", (req,res) => {
     })
 })
 
-
-
-
 //Add new workout
 router.post("/api/workouts", (req,res) => {
-    Workout.create({} )
+    Workout.create({})
     .then(dbWorkout => {
         res.json(dbWorkout);
     }) 
@@ -77,6 +66,5 @@ router.post("/api/workouts", (req,res) => {
         res.status(400).json(err);
     })
 })
-
 
 module.exports = router;
